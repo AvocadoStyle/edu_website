@@ -1,4 +1,4 @@
-export class Media {
+class Media {
     constructor(id){
         this.id = id
         this.key = `AIzaSyA17jv3uqkN8KEOo7DqBmbsCqt1FZKSvxo`
@@ -26,4 +26,8 @@ export class Media {
         this.build_api_url()
     }
 
+}
+
+module.exports = {
+    Media
 }

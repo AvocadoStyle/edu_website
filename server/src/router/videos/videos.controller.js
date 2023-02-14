@@ -1,8 +1,11 @@
-const {
+// import { getPlaylists } from '../../model/playlists.model'
+let { getPlaylists } = require('../../model/playlists.model')
 
-} = require('../../model/videos.model')
 
+async function httpGetAllVideos(req, res) {
+    return res.status(200).json(await getPlaylists())
+}
 
-function httpGetAllVideos(req, res) {
-
+module.exports = {
+    httpGetAllVideos
 }

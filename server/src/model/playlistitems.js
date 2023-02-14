@@ -1,7 +1,10 @@
-import { Media } from "./media"
-import { Video } from "./videos"
+// import { Media } from "./media"
+// import { Video } from "./videos"
+let { Media } = require('./media')
+let { Video } = require('./videos')
 
-export class playlistItems extends Media {
+
+class playlistItems extends Media {
     constructor(id, name){
         super(id)
         this.videos = []
@@ -34,4 +37,8 @@ export class playlistItems extends Media {
         super.init()
         await this.http_use_api()
     }
+}
+
+module.exports = {
+    playlistItems
 }

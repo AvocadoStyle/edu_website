@@ -1,3 +1,4 @@
+
 const express = require('express');
 
 const {
@@ -8,11 +9,11 @@ const {
 } = require('./videos.controller')
 
 
-const launchesRouter = express.Router()
+const videosRouter = express.Router()
 
-launchesRouter.get('/launches', httpGetAllVideos)
-launchesRouter.post('/launches', httpPostLaunch)
-launchesRouter.delete('/launches', httpDeleteLaunch)
+videosRouter.get('/videos', httpGetAllVideos)
+// launchesRouter.post('/launches', httpPostLaunch)
+// launchesRouter.delete('/launches', httpDeleteLaunch)
 // launchesRouter.get('/launches/:id', getLaunch)
 
-module.exports = launchesRouter
+module.exports = videosRouter
