@@ -3,7 +3,7 @@ let { getPlaylists } = require('../../model/playlists.model')
 
 
 async function httpGetAllVideos(req, res) {
-    return res.status(200).json(await getPlaylists())
+    return await res.status(200).json(await getPlaylists())
 }
 
 module.exports = {
