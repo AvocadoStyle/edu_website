@@ -1,0 +1,26 @@
+{
+  "name": "edu_website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "install-all": "npm run install-server && npm run install-client",
+    "server": "npm run start --prefix server",
+    "client": "npm run dev --prefix client",
+    "deploy": "npm run build --prefix client && npm start --prefix server",
+    "watch": "npm run client | npm run server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvocadoStyle/edu_website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AvocadoStyle/edu_website/issues"
+  },
+  "homepage": "https://github.com/AvocadoStyle/edu_website#readme"
+}
