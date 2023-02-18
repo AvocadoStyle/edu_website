@@ -22,7 +22,7 @@ class playlistItems extends Media {
             let data = await response.json()
 
             for(let i=0; i < data.items.length; i++){
-                let video_obj = new Video(data.items[i].snippet.resourceId.videoId, data.items[i].snippet.title)
+                let video_obj = new Video(data.items[i].snippet.resourceId.videoId, data.items[i].snippet.title, data.items[i].snippet.thumbnails.high.url)
                 await video_obj.init()
                 this.videos.push(video_obj)
             }
