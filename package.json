@@ -11,7 +11,7 @@
     "server": "npm run start --prefix server",
     "client": "npm run dev --prefix client",
     "deploy": "npm run build --prefix client && npm start --prefix server",
-    "watch": "npm run client | npm run server"
+    "watch": "npm run client && npm run server"
   },
   "repository": {
     "type": "git",
