@@ -5,7 +5,7 @@ export const getPlaylists = async () => {
       headers: { 'Content-Type': 'application/json' },
     };
   
-    const response = await fetch('http://localhost:8000/videos',requestOptions);
+    const response = await fetch('https://edu-api-backend.onrender.com/videos',requestOptions);
     if(response.status != 200){
       throw new Error("couldn't get the categories")
     }
