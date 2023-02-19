@@ -9,7 +9,10 @@ const videosRouter = require('./router/videos/videos.router')
 const app = express();
 
 
-app.use(cors())
+app.use(cors({
+    origin:["http://localhost:8000",
+"https://edu-api-backend.onrender.com"]
+}))
 app.use(morgan('combined'))
 app.use(express.json());
 app.use(videosRouter)
