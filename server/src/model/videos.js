@@ -1,4 +1,5 @@
 // import { Media } from "./media"
+
 let { Media } = require('./media')
 
 class Video extends Media {

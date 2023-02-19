@@ -1,5 +1,6 @@
 // import { Media } from "./media"
 // import { Video } from "./videos"
+import fetch from "node-fetch";
 let { Media } = require('./media')
 let { Video } = require('./videos')
 
