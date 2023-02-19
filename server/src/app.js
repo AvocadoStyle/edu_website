@@ -11,7 +11,9 @@ const app = express();
 
 app.use(cors({
     origin:["http://localhost:8000",
-"https://edu-api-backend.onrender.com"]
+"https://edu-api-backend.onrender.com",
+"https://youtube.googleapis.com/youtube/v3",
+"https://youtube.googleapis.com"]
 }))
 app.use(morgan('combined'))
 app.use(express.json());
