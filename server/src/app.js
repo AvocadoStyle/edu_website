@@ -13,7 +13,9 @@ app.use(cors({
     origin:["http://localhost:8000",
 "https://edu-api-backend.onrender.com",
 "https://youtube.googleapis.com/youtube/v3",
-"https://youtube.googleapis.com"]
+"https://youtube.googleapis.com",
+"http://localhost:5174",
+"http://localhost:5174/"]
 }))
 app.use(morgan('combined'))
 app.use(json());
