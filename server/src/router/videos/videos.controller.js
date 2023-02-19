@@ -1,11 +1,9 @@
 // import { getPlaylists } from '../../model/playlists.model'
-let { getPlaylists } = require('../../model/playlists.model')
+import  getPlaylists  from '../../model/playlists.model.js'
 
 
 async function httpGetAllVideos(req, res) {
     return await res.status(200).json(await getPlaylists())
 }
 
-module.exports = {
-    httpGetAllVideos
-}
+export default httpGetAllVideos

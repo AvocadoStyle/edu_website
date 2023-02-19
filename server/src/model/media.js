@@ -29,6 +29,4 @@ class Media {
 
 }
 
-module.exports = {
-    Media
-}
+export default Media

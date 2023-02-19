@@ -1,4 +1,4 @@
-let { playlists } = require("./playlists");
+import  playlists  from "./playlists.js";
 
 
 async function getPlaylists(){
@@ -8,6 +8,4 @@ async function getPlaylists(){
 }
 
 
-module.exports = {
-    getPlaylists
-}
+export default getPlaylists

@@ -1,6 +1,6 @@
 // import { Media } from "./media"
 
-let { Media } = require('./media')
+import  Media  from './media.js'
 
 class Video extends Media {
     constructor(id, name, img){
@@ -26,6 +26,4 @@ class Video extends Media {
     }
 }
 
-module.exports = {
-    Video
-}
+export default Video

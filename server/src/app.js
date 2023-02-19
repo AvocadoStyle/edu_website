@@ -1,10 +1,10 @@
-const express = require('express')
+import express, { json } from 'express'
 // const OAuth2Data = require('./cred.json')
-const path = require('path')
+import path from 'path'
 // const { google } = require('googleapis')
-const cors = require('cors')
-const morgan = require('morgan')
-const videosRouter = require('./router/videos/videos.router')
+import cors from 'cors'
+import morgan from 'morgan'
+import videosRouter from './router/videos/videos.router.js'
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(cors({
 "https://youtube.googleapis.com"]
 }))
 app.use(morgan('combined'))
-app.use(express.json());
+app.use(json());
 app.use(videosRouter)
 
 
@@ -28,5 +28,5 @@ app.use(videosRouter)
 //   });
 
 
-module.exports = app;
+export default app;
 

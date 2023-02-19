@@ -1,8 +1,8 @@
 // import { Media } from "./media"
 // import { playlistItems } from "./playlistitems"
-import fetch from "node-fetch";
-let { Media } = require('./media')
-let { playlistItems } = require('./playlistitems')
+import  fetch  from "node-fetch"
+import  Media  from './media.js'
+import  playlistItems  from './playlistitems.js'
 
 
 class playlists extends Media {
@@ -39,6 +39,4 @@ class playlists extends Media {
     }
 }
 
-module.exports = {
-    playlists
-}
+export default playlists

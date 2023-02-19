@@ -1,19 +1,14 @@
 
-const express = require('express');
+import { Router } from 'express';
 
-const {
-    httpGetAllVideos,
-    // httpGetVideo,
-    // httpPostLaunch,
-    // httpDeleteLaunch,
-} = require('./videos.controller')
+import  httpGetAllVideos  from './videos.controller.js';
 
 
-const videosRouter = express.Router()
+const videosRouter = Router()
 
 videosRouter.get('/videos', httpGetAllVideos)
 // launchesRouter.post('/launches', httpPostLaunch)
 // launchesRouter.delete('/launches', httpDeleteLaunch)
 // launchesRouter.get('/launches/:id', getLaunch)
 
-module.exports = videosRouter
+export default videosRouter
