@@ -17,7 +17,10 @@ app.use(cors({
 "http://localhost:5174",
 "http://localhost:5174/",
 "https://education-website.onrender.com",
-"https://education-website.onrender.com/"]
+"https://education-website.onrender.com/",
+"https://ortora.onrender.com/",
+"https://ortora.onrender.com/videos",
+"https://ortora.onrender.com"]
 }))
 app.use(morgan('combined'))
 app.use(json());
