@@ -1,5 +1,5 @@
 // import { getPlaylists } from '../../model/playlists.model'
-import  getPlaylists  from '../../model/playlists.model.js'
+import  getPlaylists from '../../model/videos/playlists.model.js'
 
 
 async function httpGetAllVideos(req, res) {
