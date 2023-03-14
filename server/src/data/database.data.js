@@ -6,8 +6,11 @@ import { JSONFileSync } from 'lowdb/node'
 var db;
 export const createConnection = () => {
     db = new LowSync(new JSONFileSync('db.json'))
-    db.data = { users: [] }
-    db.write()
+    db.read()
+    if(!db.data){
+        db.data = { users: [] }
+        db.write()
+    }
     // db.defaults({ users: []}).write();
     // db.defaults({ categories: []}).write();
     // db.defaults({ items: []}).write();
