@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/AvocadoStyle/edu_website#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "lowdb": "^5.1.0"
   }
 }

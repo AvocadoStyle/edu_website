@@ -19,19 +19,31 @@ export default class User extends Person {
     }
     createUser(){
         try{
-            // getConnection().get('users').push({
-            //     id: this.id,
-            //     name: this.name,
-            //     email: this.email,
-            //     password: this.password,
-            //     type: this.type 
-            // }).write()
-
             let db = getConnection()
             db.data.users.push(this)
             db.write()
         } catch(e){
             console.log(`cannot save the user into the db`, e)
+            throw e
+        }
+    }
+    isUserExistsInDB(){
+        try{
+            let db = getConnection()
+            let users_db = db.data.users
+            let user_existance = users_db.find(user => {
+                        if(user.name == this.name &&
+                        user.email == this.email &&
+                        user.password == this.password){
+                            return user
+                        }
+            })
+            if(user_existance && user_existance.type != 'regular') {
+                this.type = user_existance.type
+            }
+            return user_existance
+        } catch(e){
+            console.log(`user not exists ${e}`)
             throw e
         }
     }

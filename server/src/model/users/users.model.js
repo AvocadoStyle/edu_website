@@ -1,6 +1,9 @@
 import UserFactory from './userfactory.js';
 import { getConnection } from "../../data/database.data.js"
-
+import jwt from 'jsonwebtoken'
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import express from 'express'
+dotenv.config()
 export function getUsers(){
     try{
         let users = getConnection().get('users').value();
@@ -34,6 +37,25 @@ export async function createUser(name, email, password, type){
         return user_obj;
     } catch(e){
         console.log(`error - cannot create user ${e}`)
+        throw e
+    }
+}
+
+export async function loginUser(name, email, password){
+    try{
+        let user_obj = await UserFactory.user(name, email, password)
+        let user_existance_credentials = await user_obj.isUserExistsInDB()
+        
+        let jwtSecret = process.env.JWT_SECRET;
+        if(user_existance_credentials){
+          const token = jwt.sign(user_existance_credentials,
+             jwtSecret);
+          return token
+        } else {
+          return null;
+        }
+    } catch(e){
+        console.log(`error - cannot login user ${e}`)
         throw e
     }
 }
