@@ -11,19 +11,7 @@ import usersRouter from './router/users/users.router.js'
 const app = express();
 
 
-app.use(cors({
-    origin:["http://localhost:8000",
-"https://edu-api-backend.onrender.com",
-"https://youtube.googleapis.com/youtube/v3",
-"https://youtube.googleapis.com",
-"http://localhost:5174",
-"http://localhost:5174/",
-"https://education-website.onrender.com",
-"https://education-website.onrender.com/",
-"https://ortora.onrender.com/",
-"https://ortora.onrender.com/videos",
-"https://ortora.onrender.com"]
-}))
+app.use(cors())
 app.use(morgan('combined'))
 app.use(json());
 app.use(videosRouter)
