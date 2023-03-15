@@ -23,7 +23,7 @@ function Videos() {
               playlistsArr = await getPlaylists();
               setPlaylists(playlistsArr);
             } catch(error){
-              alert("failed to get the categories from server")
+              console.log("failed to get the videos from server")
             }
           };
           getPlaylistsMap();        
