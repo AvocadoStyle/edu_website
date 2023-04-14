@@ -15,6 +15,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 import Videos from './pages/Videos'
+import Admin from './pages/Admin'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/videos" element={<Videos />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reset-password" element={<ResetPassword />} />

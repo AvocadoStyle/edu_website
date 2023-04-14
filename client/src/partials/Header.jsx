@@ -50,9 +50,14 @@ function Header() {
 
             {/* Desktop menu links */}
             <ul className="flex grow justify-end flex-wrap items-center">
-              <li>
+              {/* <li>
                 <Link to="/features" className="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out">
                   Features
+                </Link>
+              </li> */}
+              <li>
+                <Link to="/pictures" className="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out">
+                  Pictures
                 </Link>
               </li>
               <li>
@@ -86,6 +91,9 @@ function Header() {
 
             {/* Desktop sign in links */}
             <ul className="flex grow justify-end flex-wrap items-center">
+            <li>
+                <Link to="/admin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">ADMIN</Link>
+              </li>
               <li>
                 <Link to="/signin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">Sign in</Link>
               </li>
@@ -113,7 +121,13 @@ function Header() {
             <nav id="mobile-nav" ref={mobileNav} className="absolute top-full z-20 left-0 w-full px-4 sm:px-6 overflow-hidden transition-all duration-300 ease-in-out" style={mobileNavOpen ? { maxHeight: mobileNav.current.scrollHeight, opacity: 1 } : { maxHeight: 0, opacity: .8 } }>
               <ul className="bg-gray-800 px-4 py-2">
                 <li>
+                  <Link to="/pictures" className="flex text-gray-300 hover:text-gray-200 py-2">Pictures</Link>
+                </li>
+                {/* <li>
                   <Link to="/features" className="flex text-gray-300 hover:text-gray-200 py-2">Features</Link>
+                </li> */}
+                <li>
+                  <Link to="/videos" className="flex text-gray-300 hover:text-gray-200 py-2">Videos</Link>
                 </li>
                 <li>
                   <Link to="/pricing" className="flex text-gray-300 hover:text-gray-200 py-2">Pricing</Link>
@@ -138,6 +152,9 @@ function Header() {
                     </li>
                   </ul>
                 </li>
+                <li>
+                <Link to="/admin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">ADMIN</Link>
+              </li>
                 <li>
                   <Link to="/signin" className="flex font-medium w-full text-purple-600 hover:text-gray-200 py-2 justify-center">Sign in</Link>
                 </li>
