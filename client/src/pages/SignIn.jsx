@@ -1,11 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {Link, Routes, Route, useNavigate} from 'react-router-dom';
+
 
 import Header from '../partials/Header';
 import PageIllustration from '../partials/PageIllustration';
 import Banner from '../partials/Banner';
+import { signIn } from '../utils/server/serverService';
 
 function SignIn() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    try{
+      event.preventDefault();
+      // perform any validation here
+      if (!name || !email || !password) {
+        // setFormError('All fields are required.');
+        alert('wrong credentials')
+        return;
+      }
+      let token = await signIn(name, email, password)
+  
+      // make API call to sign up the user with the form data
+      console.log('form submitted:');
+      navigate('/')
+      // alert(`signed in good! token saved as ${token}`)
+    } catch(e){
+      console.log(`wrong items ${e}`)
+      alert('bad credentials')
+    }
+  };
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
 
@@ -26,7 +52,7 @@ function SignIn() {
 
               {/* Page header */}
               <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-                <h1 className="h1">Welcome back. We exist to make entrepreneurship easier.</h1>
+                <h1 className="h1">Welcome back.</h1>
               </div>
 
               {/* Form */}
@@ -44,25 +70,68 @@ function SignIn() {
                     </div>
                   </div>
                 </form>
+
+
+
+
+
+
+
+
+
                 <div className="flex items-center my-6">
                   <div className="border-t border-gray-700 border-dotted grow mr-3" aria-hidden="true"></div>
                   <div className="text-gray-400">Or, sign in with your email</div>
                   <div className="border-t border-gray-700 border-dotted grow ml-3" aria-hidden="true"></div>
                 </div>
-                <form>
+
+
+
+
+
+
+
+
+                <form onSubmit={handleSubmit}>
                   <div className="flex flex-wrap -mx-3 mb-4">
                     <div className="w-full px-3">
                       <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="email">Email</label>
-                      <input id="email" type="email" className="form-input w-full text-gray-300" placeholder="you@yourcompany.com" required />
+                      <input id="name" type="text" className="form-input w-full text-gray-300" placeholder="Name" required
+                        value={name}
+                        onChange={(event)=>setName(event.target.value)}
+                      
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap -mx-3 mb-4">
+                    <div className="w-full px-3">
+                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="email">Email</label>
+                      <input id="email" type="email" className="form-input w-full text-gray-300" placeholder="you@yourcompany.com" required
+                        value={email}
+                        onChange={(event)=>setEmail(event.target.value)}
+                      
+
+
+
+
+                      />
                     </div>
                   </div>
                   <div className="flex flex-wrap -mx-3 mb-4">
                     <div className="w-full px-3">
                       <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="password">Password</label>
-                      <input id="password" type="password" className="form-input w-full text-gray-300" placeholder="Password (at least 10 characters)" required />
+                      <input id="password" type="password" className="form-input w-full text-gray-300" placeholder="Password (at least 10 characters)" required
+                        value={password}
+                        onChange={(event)=>setPassword(event.target.value)}
+                      
+
+
+
+
+                      />
                     </div>
                   </div>
-                  <div className="flex flex-wrap -mx-3 mb-4">
+                  {/* <div className="flex flex-wrap -mx-3 mb-4">
                     <div className="w-full px-3">
                       <div className="flex justify-between">
                         <label className="flex items-center">
@@ -72,10 +141,12 @@ function SignIn() {
                         <Link to="/reset-password" className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out">Forgot Password?</Link>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                      <button className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign in</button>
+                      <button type='submit' 
+                      className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">
+                        Sign in</button>
                     </div>
                   </div>
                 </form>
@@ -90,7 +161,7 @@ function SignIn() {
 
       </main>
 
-      <Banner />
+      {/* <Banner /> */}
 
     </div>
   );

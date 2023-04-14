@@ -2,7 +2,12 @@ import { getUsers, getUser, createUser, loginUser } from '../../model/users/user
 import { getConnection } from "../../data/database.data.js"
 
 export function httpGetUsers(req, res){
-
+    try{
+        let users = getUsers()
+        return res.status(200).json(users)
+    } catch(e){
+        return res.status(400).json({'message': 'error occured'})
+    }
 }
  
 

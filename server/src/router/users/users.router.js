@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { httpGetUsers, httpGetUser, httpUpdateUser, httpDeleteUser, httpCreateUser, httpLoginUser } from './users.contoller.js'
-import userDeco from './privilegs_decorator.js'
+import userDeco from '../privilegs_decorator.js'
 
 
 const usersRouter = Router()
@@ -11,5 +11,6 @@ usersRouter.put('/users/:id', userDeco(httpUpdateUser, 'admin'))
 usersRouter.delete('/users/:id', userDeco(httpDeleteUser, 'admin'))
 usersRouter.post('/users', httpCreateUser)
 usersRouter.post('/users/login', httpLoginUser)
+
 
 export default usersRouter

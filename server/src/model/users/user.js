@@ -3,6 +3,12 @@ import { getConnection } from "../../data/database.data.js";
 
 
 export default class User extends Person {
+    static authorization_types = {
+        'regular': 0,
+        'manager': 1,
+        'admin': 2,
+        'superhuman': 3,
+    }
     constructor(name, email, password, type){
         super(name)
         this.email = email

@@ -6,9 +6,9 @@ import express from 'express'
 dotenv.config()
 export function getUsers(){
     try{
-        let users = getConnection().get('users').value();
-        let userData = users.map(u => u.user);
-        return userData;
+        let users = getConnection().data.users
+        // let userData = users.map(u => u.user);
+        return users;
     } catch(e){
         console.log("error - couldn't get the users", e)
         throw e
@@ -48,8 +48,12 @@ export async function loginUser(name, email, password){
         
         let jwtSecret = process.env.JWT_SECRET;
         if(user_existance_credentials){
-          const token = jwt.sign(user_existance_credentials,
-             jwtSecret);
+          const token = jwt.sign(
+            { id: user_existance_credentials.id,
+              name: user_existance_credentials.name,
+              email: user_existance_credentials.email,
+              password: user_existance_credentials.password,
+              type: user_existance_credentials.type}, jwtSecret);
           return token
         } else {
           return null;

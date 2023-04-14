@@ -1,11 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../partials/Header';
 import PageIllustration from '../partials/PageIllustration';
 import Banner from '../partials/Banner';
+import { signUp } from '../utils/server/serverService';
 
 function SignUp() {
+  // const [formData, setFormData] = useState({
+  //   name: null,
+  //   email: null,
+  //   password: null,
+  // });
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: value,
+  //   }));
+  // };
+
+  const handleSubmit = async (event) => {
+    try{
+      event.preventDefault();
+      // perform any validation here
+      if (!name || !email || !password) {
+        // setFormError('All fields are required.');
+        alert('wrong credentials')
+        return;
+      }
+      await signUp(name, email, password)
+  
+      // make API call to sign up the user with the form data
+      console.log('form submitted:');
+      alert(`signed up good!`)
+    } catch(e){
+      console.log(`wrong items ${e}`)
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
 
@@ -44,47 +83,67 @@ function SignUp() {
                     </div>
                   </div>
                 </form>
+
+
+
                 <div className="flex items-center my-6">
                   <div className="border-t border-gray-700 border-dotted grow mr-3" aria-hidden="true"></div>
                   <div className="text-gray-400">Or, register with your email</div>
                   <div className="border-t border-gray-700 border-dotted grow ml-3" aria-hidden="true"></div>
                 </div>
-                <form>
+
+
+
+
+
+                <form onSubmit={handleSubmit}>
+
+
+
+
                   <div className="flex flex-wrap -mx-3 mb-4">
                     <div className="w-full px-3">
-                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">Full Name <span className="text-red-600">*</span></label>
-                      <input id="full-name" type="text" className="form-input w-full text-gray-300" placeholder="First and last name" required />
+
+
+                      
+                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">Name <span className="text-red-600">*</span></label>
+                      <input id="full-name" type="text" className="form-input w-full text-gray-300" placeholder="Name" required
+                      value={name}
+                      onChange={(event)=>setName(event.target.value)}
+                      />
+
+
+
+
                     </div>
                   </div>
                   <div className="flex flex-wrap -mx-3 mb-4">
                     <div className="w-full px-3">
-                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="company-name">Company Name <span className="text-red-600">*</span></label>
-                      <input id="company-name" type="text" className="form-input w-full text-gray-300" placeholder="Your company or app name" required />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="email">Work Email <span className="text-red-600">*</span></label>
-                      <input id="email" type="email" className="form-input w-full text-gray-300" placeholder="you@yourcompany.com" required />
+                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="email">Email <span className="text-red-600">*</span></label>
+                      <input id="email" type="email" className="form-input w-full text-gray-300" placeholder="you@domain.com" required
+                      value={email}
+                      onChange={(event)=>setEmail(event.target.value)} />
                     </div>
                   </div>
                   <div className="flex flex-wrap -mx-3 mb-4">
                     <div className="w-full px-3">
                       <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="password">Password <span className="text-red-600">*</span></label>
-                      <input id="password" type="password" className="form-input w-full text-gray-300" placeholder="Password (at least 10 characters)" required />
+                      <input id="password" type="password" className="form-input w-full text-gray-300" placeholder="Password (at least 10 characters)" required
+                      value={password}
+                      onChange={(event)=>setPassword(event.target.value)} />
                     </div>
                   </div>
                   <div className="text-sm text-gray-500 text-center">
-                    I agree to be contacted by Open PRO about this offer as per the Open PRO <Link to="#" className="underline text-gray-400 hover:text-gray-200 hover:no-underline transition duration-150 ease-in-out">Privacy Policy</Link>.
+                    I agree to be contacted by this webpage about this offer as per the webpage <Link to="#" className="underline text-gray-400 hover:text-gray-200 hover:no-underline transition duration-150 ease-in-out">Privacy Policy</Link>.
                                 </div>
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                      <button className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign up</button>
+                      <button type='submit' className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign up</button>
                     </div>
                   </div>
                 </form>
                 <div className="text-gray-400 text-center mt-6">
-                  Already using Open PRO? <Link to="signin" className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out">Sign in</Link>
+                  Already using? <Link to="/signin" className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out">Sign in</Link>
                 </div>
               </div>
 
