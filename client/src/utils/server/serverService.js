@@ -72,3 +72,8 @@ export const signIn = async(name, email, password) => {
     throw e
   }
 }
+
+export const signOutUser = async () => {
+  localStorage.setItem("token", "")
+  // token = "";
+};

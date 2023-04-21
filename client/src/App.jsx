@@ -16,10 +16,14 @@ import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 import Videos from './pages/Videos'
 import Admin from './pages/Admin'
+// import { decodeToken } from "react-jwt";
 
 function App() {
 
   const location = useLocation();
+  // let token = localStorage.getItem("token")
+  // const myDecodedToken = decodeToken(token)
+
 
   useEffect(() => {
     AOS.init({

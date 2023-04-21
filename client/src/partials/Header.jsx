@@ -1,15 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Dropdown from '../utils/Dropdown';
+import { decodeToken } from "react-jwt";
+import { signOutUser } from '../utils/server/serverService';
 
 function Header() {
 
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
+  const [user, setUser] = useState()
+  const navigate = useNavigate();
   const trigger = useRef(null);
   const mobileNav = useRef(null);
 
-  // close the mobile menu on click outside
+  useEffect(() => {
+    let token = localStorage.getItem("token")
+    const myDecodedToken = decodeToken(token)
+    setUser(myDecodedToken)
+  }, []);
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!mobileNav.current || !trigger.current) return;
@@ -29,6 +36,19 @@ function Header() {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
+
+  function isRenderContentAdmin(user) {
+    return user?.type !== 'regular' && user?.type
+  }
+  function isUserSignedIn(user) {
+    return user?.name ? true: false
+  }
+
+  const signout = () =>{
+    setUser("")
+    signOutUser();
+    navigate("/")
+  }
 
   return (
     <header className="absolute w-full z-30">
@@ -91,15 +111,38 @@ function Header() {
 
             {/* Desktop sign in links */}
             <ul className="flex grow justify-end flex-wrap items-center">
-            <li>
+              
+
+              {isRenderContentAdmin(user) ?               <li>
                 <Link to="/admin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">ADMIN</Link>
+              </li>:console.log('nothing!')}
+
+            
+              {/* <li>
+                <Link to="/admin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">ADMIN</Link>
+              </li> */}
+
+              {isUserSignedIn(user) ? 
+              <li className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">
+                {`user name: ${user.name}`}
               </li>
+              :
               <li>
+              <Link to="/signin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">Sign in</Link>
+            </li>
+              }
+              {/* <li>
                 <Link to="/signin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">Sign in</Link>
-              </li>
+              </li> */}
+              {isUserSignedIn(user) ? 
+                <li className="btn-sm text-white bg-purple-600 cursor-pointer hover:bg-purple-700 ml-3" onClick={signout}>
+                  Logout
+                </li>
+              :
               <li>
                 <Link to="/signup" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">Sign up</Link>
               </li>
+              } 
             </ul>
 
           </nav>
@@ -116,6 +159,20 @@ function Header() {
                 <rect y="18" width="24" height="2" rx="1" />
               </svg>
             </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             {/*Mobile navigation */}
             <nav id="mobile-nav" ref={mobileNav} className="absolute top-full z-20 left-0 w-full px-4 sm:px-6 overflow-hidden transition-all duration-300 ease-in-out" style={mobileNavOpen ? { maxHeight: mobileNav.current.scrollHeight, opacity: 1 } : { maxHeight: 0, opacity: .8 } }>
@@ -152,15 +209,33 @@ function Header() {
                     </li>
                   </ul>
                 </li>
+
+
+                
+              {isRenderContentAdmin(user) ?               
                 <li>
                 <Link to="/admin" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">ADMIN</Link>
-              </li>
+              </li>: console.log('nothing!')}
+                
+              {isUserSignedIn(user)?
+                              <li className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">
+                              {`user name: ${user.name}`}
+                            </li>
+                :
                 <li>
-                  <Link to="/signin" className="flex font-medium w-full text-purple-600 hover:text-gray-200 py-2 justify-center">Sign in</Link>
+                <Link to="/signin" className="flex font-medium w-full text-purple-600 hover:text-gray-200 py-2 justify-center">Sign in</Link>
+              </li>
+                
+              }
+              {isUserSignedIn(user) ? 
+                <li className="btn-sm text-white bg-purple-600 cursor-pointer hover:bg-purple-700 ml-3" onClick={signout}>
+                  Logout
                 </li>
+              :
                 <li>
                   <Link to="/signup" className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out">Sign up</Link>
                 </li>
+              }
               </ul>
             </nav>
 

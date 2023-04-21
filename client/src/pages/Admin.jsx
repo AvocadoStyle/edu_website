@@ -13,7 +13,7 @@ import Footer from '../partials/Footer';
 function Admin() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
-      {/*  Site header */}
+       kaki gadol meod
       <Header />
 
       {/*  Page content */}
